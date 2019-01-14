@@ -12,5 +12,43 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return "Welcome to JAM the house!";
+});
+
+$router->group(['prefix' => 'api/v1/{letter}'], function () use ($router) {
+    $router->get('status', function($letter) {
+        $letter = sanitizeLetter($letter);
+
+        $command = escapeshellcmd(getcwd() . '/../scripts/jam.py status ' . $letter);
+        $status = shell_exec($command);
+
+        return $status;
+    });
+
+    $router->post('toggle', function($letter) {
+        $letter = sanitizeLetter($letter);
+
+        $command = escapeshellcmd(getcwd() . '../scripts/jam.py toggle ' . $letter);
+        $status = shell_exec($command);
+
+        return $status;
+    });
+
+    $router->post('on', function($letter) {
+        $letter = sanitizeLetter($letter);
+
+        $command = escapeshellcmd(getcwd() . '../scripts/jam.py open ' . $letter);
+        $status = shell_exec($command);
+
+        return $status;
+    });
+
+    $router->post('off', function($letter) {
+        $letter = sanitizeLetter($letter);
+
+        $command = escapeshellcmd(getcwd() . '../scripts/jam.py off ' . $letter);
+        $status = shell_exec($command);
+
+        return $status;
+    });
 });

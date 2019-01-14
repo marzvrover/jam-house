@@ -13,6 +13,17 @@
 
 $app = require __DIR__.'/../bootstrap/app.php';
 
+function sanitizeLetter($letter) {
+    $letter = strtolower($letter);
+
+    switch($letter) {
+        case 'j': case 'a': case 'm': break;
+        default: $letter = null;
+    }
+
+    return $letter;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Run The Application
