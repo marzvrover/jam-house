@@ -28,7 +28,7 @@ $router->group(['prefix' => 'api/v1/{letter}'], function () use ($router) {
     $router->post('toggle', function($letter) {
         $letter = sanitizeLetter($letter);
 
-        $command = escapeshellcmd(getcwd() . '../scripts/jam.py toggle ' . $letter);
+        $command = escapeshellcmd(getcwd() . '/../scripts/jam.py toggle ' . $letter);
         $status = shell_exec($command);
 
         return $status;
@@ -37,7 +37,7 @@ $router->group(['prefix' => 'api/v1/{letter}'], function () use ($router) {
     $router->post('on', function($letter) {
         $letter = sanitizeLetter($letter);
 
-        $command = escapeshellcmd(getcwd() . '../scripts/jam.py open ' . $letter);
+        $command = escapeshellcmd(getcwd() . '/../scripts/jam.py open ' . $letter);
         $status = shell_exec($command);
 
         return $status;
@@ -46,7 +46,7 @@ $router->group(['prefix' => 'api/v1/{letter}'], function () use ($router) {
     $router->post('off', function($letter) {
         $letter = sanitizeLetter($letter);
 
-        $command = escapeshellcmd(getcwd() . '../scripts/jam.py off ' . $letter);
+        $command = escapeshellcmd(getcwd() . '/../scripts/jam.py close ' . $letter);
         $status = shell_exec($command);
 
         return $status;
