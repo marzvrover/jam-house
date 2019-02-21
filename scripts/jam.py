@@ -24,9 +24,7 @@ class Jam:
     for arg in args:
       arg = arg.lower()
 
-    if len(args) == 1:
-      return
-    elif len(args) == 2:
+    if len(args) == 2:
       self.resolveLetter(args[1]).toggle()
     elif len(args) == 3:
       if (args[1] == 'open'):
